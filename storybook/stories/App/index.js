@@ -4,7 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import NumberOfBins from '../NumberOfBins';
 import SetUp from '../SetUp';
-import { Button } from 'react-native-elements';
+import { Button, Tile } from 'react-native-elements';
 
 export const LogoTitle = () => {
   return (
@@ -16,11 +16,11 @@ export const LogoTitle = () => {
   )
 }
 
-export const CancelButton = () => {
+export const CancelButton = ({ title }) => {
   return (
     <Button
       onPress={() => alert('This is a button!')}
-      title="Cancel"
+      title={title || 'Cancel'}
       color="#fff"
       type="clear"
       titleStyle={{
