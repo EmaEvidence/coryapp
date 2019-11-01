@@ -9,21 +9,21 @@ class LabeledInput extends Component {
     this.state = {
       value: 1
     }
-    this.handleOnpress = this.handleOnpress.bind(this);
   }
 
   render() {
+    const { label, value, mode } = this.props.bin;
     return (
       <View style={NumberInputStyle.body}>
         <Text>
           {label}
         </Text>
         <Input
-          value={(this.state.value).toString()}
+          // value={(value).toString()}
           inputStyle={NumberInputStyle.input}
           containerStyle={NumberInputStyle.inputContainer}
           inputContainerStyle={NumberInputStyle.container}
-          placeholder='1'
+          placeholder={label}
           onChangeText={(text) => this.setState({text})}
         />
       </View>
@@ -36,11 +36,14 @@ const NumberInputStyle = {
     display: 'flex',
     height: '10%',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItem: 'center'
+    justifyContent: 'space-between',
+    alignItem: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginBottom: 10
   },
   inputContainer: {
-    width: '30%',
+    width: '60%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -56,9 +59,10 @@ const NumberInputStyle = {
   },
   input: {
     width: '100%',
-    textAlign: 'center',
-    fontSize: 40,
-    height: 150
+    textAlign: 'left',
+    fontSize: 20,
+    height: 150,
+    paddingBottom: 20
   },
   buttonTitle: {
     fontSize: 40

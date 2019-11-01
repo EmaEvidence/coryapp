@@ -1,7 +1,6 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { Input, Button } from 'react-native-elements';
 import LabeledInput from '../LabeledInput';
 
 class BinDetails extends Component {
@@ -10,41 +9,34 @@ class BinDetails extends Component {
     this.state = {
       value: 1
     }
-    this.handleOnpress = this.handleOnpress.bind(this);
   }
 
   render() {
-    const { bins } = this.props;
+    const { bins, lastBinNumber, details } = this.props;
     return (
-      <View style={BinDetails.body}>
-        <Text>
-          {label}
+      <View style={BinDetailsStyle.body}>
+        <Text style={BinDetailsStyle.detailsText}>
+          Begin scanning Now
         </Text>
-        <Text>
-          {label}
+        <Text style={BinDetailsStyle.detailsText}>
+          Last scanned bin - {lastBinNumber}
         </Text>
-        <Text>
-          {label}
-        </Text>
-        <View>
+        <View style={BinDetailsStyle.inputContainer}>
           {
-            bins.map((bin) => {
+            details.map((bin) => {
               return (
                 <LabeledInput
                   bin={bin}
+                  inputContainer={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItem: 'flex-start',
+                  }}
                 />
               )
             })
           }
         </View>
-        <Input
-          value={(this.state.value).toString()}
-          inputStyle={BinDetails.input}
-          containerStyle={BinDetails.inputContainer}
-          inputContainerStyle={BinDetails.container}
-          placeholder='1'
-          onChangeText={(text) => this.setState({text})}
-        />
       </View>
     );
   }
@@ -54,33 +46,21 @@ const BinDetailsStyle = {
   body: {
     display: 'flex',
     height: '10%',
-    flexDirection: 'row',
     justifyContent: 'center',
-    alignItem: 'center'
+    alignItem: 'flex-start',
+    flex: 1,
+    width: '100%'
   },
   inputContainer: {
-    width: '30%',
     display: 'flex',
-    flexDirection: 'row',
     justifyContent: 'center',
-    alignItem: 'center',
-    marginBottom: 10
+    alignItem: 'flex-start',
+    height: '70%',
+    width: '100%'
   },
-  container: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItem: 'center'
-  },
-  input: {
-    width: '100%',
+  detailsText: {
     textAlign: 'center',
-    fontSize: 40,
-    height: 150
-  },
-  buttonTitle: {
-    fontSize: 40
+    width: '100%'
   }
 }
 

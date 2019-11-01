@@ -47,11 +47,11 @@ const bins = [
 const BinDetailsFooter = ({ showSite }) => {
   return (
     <View style={BinDetailsFooterStyle.body}>
-      <View style={BinDetailsFooterStyle.content}>
+      <View style={[BinDetailsFooterStyle.content, , { justifyContent: 'flex-start' }]}>
         <Text style={BinDetailsFooterStyle.text}>Please scan next bin: 2</Text>
         <Text style={BinDetailsFooterStyle.text}>Unscanned bins: 9</Text>
       </View>
-      <View style={BinDetailsFooterStyle.content}>
+      <View style={[BinDetailsFooterStyle.content, { justifyContent: 'flex-end' }]}>
         <CustomButton
           title="Done"
           onPress={() => {}}
@@ -66,11 +66,12 @@ const BinDetailsFooter = ({ showSite }) => {
           bins.map((bin) => {
             return (
               <CustomButton
-                title="Done"
+                title={bin.value}
                 onPress={() => {}}
                 buttonStyle={{
-                  width: 50,
-                  height: 50,
+                  width: 35,
+                  height: 35,
+                  margin: 2,
                   backgroundColor: bin.isOpen ? 'green' : 'red'
                 }}
               />
@@ -93,6 +94,11 @@ const BinDetailsFooterStyle = {
   contentHolder: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center'
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   text: {
